@@ -26,3 +26,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Model\Yodiz\YodizClient:
+      arguments:
+        - '@eight_points_guzzle.client.test_api'
+        - '@cache.yodiz_requests'
+        - '%env(YODIZ_API_KEY)%'
+        - '%env(YODIZ_USER_EMAIL)%'
+        - '%env(YODIZ_USER_PASSWORD)%'

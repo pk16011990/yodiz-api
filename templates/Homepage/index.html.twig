@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <form action="" method="get">
+        <label>
+            Project:
+            <select name="projectId">
+                <option>-- Select --</option>
+                {% for project in projects %}
+                    <option value="{{ project.id }}" {{ activeProjectId == project.id ? ' selected="selected"' : '' }}>{{ project.title }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+    Welcome on my page!
+{% endblock %}
