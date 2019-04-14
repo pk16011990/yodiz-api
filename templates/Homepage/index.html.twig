@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% import 'Homepage/userStoryMacro.thml.twig' as userStoryMacro %}
+
 {% block body %}
     <div class="container-fluid">
         <div class="row">
@@ -37,54 +39,7 @@
             <div class="col-md-12 col-lg-4 board__col">
                 <h2>Sprint backlog</h2>
                 {% for userStory in userStories %}
-                    <div class="user-story">
-                        <div class="user-story__header">
-                            <span class="user-story__story-points">{{ userStory.storyPoints }} SP</span>
-                            <span class="user-story__number">
-                                {# What is number 10273 in url? #}
-                                <a href="https://app.yodiz.com/plan/pages/board.vz?cid=10273#/app/us-{{ userStory.id }}" target="_blank">US-{{ userStory.id }}</a>
-                            </span>
-                            <span class="user-story__title">{{ userStory.title }}</span>
-                        </div>
-                        <br class="clear">
-                        {% if userStory.inProgressTasks is not empty %}
-                            <div class="user-story__block">
-                                {% for inProgressTask in userStory.inProgressTasks %}
-                                    <div class="user-story__task">
-                                        {% if inProgressTask.owner is null %}
-                                            Unassigned -
-                                        {% else %}
-                                            {{ inProgressTask.owner.fullName }} -
-                                        {% endif %}
-                                        <i>{{ inProgressTask.title }}</i>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-
-                        {% if userStory.tags is not empty %}
-                            <div class="user-story__block">
-                                <span class="user-story__tags-title">Tags:</span>
-                                {% for tag in userStory.tags %}
-                                    <span class="user-story__tag">{{ tag.title }}</span>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-
-                        <div class="user-story__block">
-                            <div class="user-story__footer-item">
-                                {{ userStory.owner ? userStory.owner.fullName : 'nobody' }}
-                            </div>
-                            <div class="user-story__footer-item" title="{{ userStory.lastChangeOn|date('Y-m-d H:i:s') }}">
-                                {{ userStory.lastChangeOn|ago }}
-                            </div>
-                            <div class="user-story__footer-item">
-                                &#x23F2; {{ userStory.effortLogged|hoursAndMinutes }}
-                            </div>
-                        </div>
-                        <br class="clear">
-
-                    </div>
+                    {{ userStoryMacro.box(userStory) }}
                 {% endfor %}
             </div>
             <div class="col-md-12 col-lg-4 board__col">
