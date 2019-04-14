@@ -42,12 +42,14 @@ class Task
         int $id,
         string $title,
         float $effortLogged,
+        ?User $owner,
         Status $status,
         \DateTimeImmutable $updatedOn
     ) {
         $this->id = $id;
         $this->title = $title;
         $this->effortLogged = $effortLogged;
+        $this->owner = $owner;
         $this->status = $status;
         $this->updatedOn = $updatedOn;
     }
@@ -70,11 +72,6 @@ class Task
     public function getOwner(): ?User
     {
         return $this->owner;
-    }
-
-    public function setOwner(?User $owner): void
-    {
-        $this->owner = $owner;
     }
 
     public function getStatus(): Status

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Model\Yodiz;
 
+use App\Model\Yodiz\Task\Task;
+use App\Model\Yodiz\UserStory\UserStory;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
@@ -37,6 +39,15 @@ class YodizDeserializer
             'json',
             [
                 'allow_extra_attributes' => true,
+                'default_constructor_arguments' => [
+                    UserStory::class => [
+                        'owner' => null,
+                        'tags' => [],
+                    ],
+                    Task::class => [
+                        'owner' => null,
+                    ],
+                ]
             ]
         );
     }

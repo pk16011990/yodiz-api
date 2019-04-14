@@ -69,7 +69,7 @@ class YodizClient
         try {
             return $this->request($method, $uri, $data);
         } catch (BadResponseException $badResponseException) {
-            if ($badResponseException->getResponseStatusCode() === 401) {
+            if (in_array($badResponseException->getResponseStatusCode(), [400, 401], true) === true) {
                 $this->authenticate();
                 return $this->request($method, $uri, $data);
             }

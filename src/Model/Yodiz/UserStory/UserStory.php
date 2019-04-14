@@ -59,6 +59,7 @@ class UserStory
      * @param \App\Model\Yodiz\Status\Status $status
      * @param string $storyPoints
      * @param float $effortLogged
+     * @param \App\Model\Yodiz\User\User|null $owner
      * @param \App\Model\Yodiz\Task\Task[] $tasks
      * @param \App\Model\Yodiz\Tag\Tag[] $tags
      * @param \DateTimeImmutable $updatedOn
@@ -69,6 +70,7 @@ class UserStory
         Status $status,
         string $storyPoints,
         float $effortLogged,
+        ?User $owner,
         array $tasks,
         array $tags,
         \DateTimeImmutable $updatedOn
@@ -78,6 +80,7 @@ class UserStory
         $this->status = $status;
         $this->storyPoints = $storyPoints;
         $this->effortLogged = $effortLogged;
+        $this->owner = $owner;
         $this->tasks = $tasks;
         $this->tags = $tags;
         $this->updatedOn = $updatedOn;
@@ -111,11 +114,6 @@ class UserStory
     public function getOwner(): ?User
     {
         return $this->owner;
-    }
-
-    public function setOwner(?User $owner): void
-    {
-        $this->owner = $owner;
     }
 
     /**
