@@ -85,3 +85,8 @@
 .user-story__task:last-child {
     border-bottom: none;
 }
+
+.user-story__warning {
+    color: #970000;
+    font-weight: bold;
+}

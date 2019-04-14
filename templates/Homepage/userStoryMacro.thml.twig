@@ -9,19 +9,36 @@
             <span class="user-story__title">{{ userStory.title }}</span>
         </div>
         <br class="clear">
-        {% if userStory.inProgressTasks is not empty %}
-            <div class="user-story__block">
-                {% for inProgressTask in userStory.inProgressTasks %}
-                    <div class="user-story__task">
-                        {% if inProgressTask.owner is null %}
-                            Unassigned -
-                        {% else %}
-                            {{ inProgressTask.owner.fullName }} -
-                        {% endif %}
-                        <i>{{ inProgressTask.title }}</i>
-                    </div>
-                {% endfor %}
-            </div>
+        {% if userStory.status.inProgress %}
+            {% if userStory.inProgressTasks is not empty %}
+                <div class="user-story__block">
+                    {% for inProgressTask in userStory.inProgressTasks %}
+                        <div class="user-story__task">
+                            {% if inProgressTask.owner is null %}
+                                Unassigned -
+                            {% else %}
+                                {{ inProgressTask.owner.fullName }} -
+                            {% endif %}
+                            <i>{{ inProgressTask.title }}</i>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% elseif userStory.status.inProgress %}
+                <div class="user-story__block">
+                    <div class="user-story__warning">Nobody works on it. Waiting tasks:</div>
+                    {% for task in userStory.tasks if task.status.new %}
+                        <div class="user-story__task">
+                            {% if task.owner is null %}
+                                Unassigned -
+                            {% else %}
+                                {{ task.owner.fullName }} -
+                            {% endif %}
+                            <i>{{ task.title }}</i>
+                            ({{ task.status.title }})
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% endif %}
 
         {% if userStory.tags is not empty %}
