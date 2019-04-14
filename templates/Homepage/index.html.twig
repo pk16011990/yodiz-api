@@ -3,12 +3,24 @@
 {% block body %}
 
     <form action="" method="get">
+
         <label>
             Project:
             <select name="projectId">
                 <option>-- Select --</option>
                 {% for project in projects %}
                     <option value="{{ project.id }}" {{ activeProjectId == project.id ? ' selected="selected"' : '' }}>{{ project.title }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+
+        <label>
+            Sprint:
+            <select name="sprintId">
+                <option>-- Select --</option>
+                {% for sprint in sprints %}
+                    <option value="{{ sprint.id }}" {{ activeSprintId == sprint.id ? ' selected="selected"' : '' }}>{{ sprint.title }} ({{ sprint.status.title }})</option>
                 {% endfor %}
             </select>
         </label>
