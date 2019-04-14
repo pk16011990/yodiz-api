@@ -2,11 +2,11 @@
 
 {% block body %}
 
-    <form action="" method="get">
+    <form action="" method="get" onchange="this.submit();">
 
         <label>
             Project:
-            <select name="projectId">
+            <select name="projectId" onchange="document.getElementById('js-sprint-selectbox').value = '';">
                 <option value="">-- Select --</option>
                 {% for project in projects %}
                     <option value="{{ project.id }}" {{ activeProjectId == project.id ? ' selected="selected"' : '' }}>{{ project.title }}</option>
@@ -22,7 +22,7 @@
                     <option value="">-- Select project before --</option>
                 </select>
             {% else %}
-                <select name="sprintId">
+                <select name="sprintId" id="js-sprint-selectbox">
                     <option value="">-- Select --</option>
                     {% for sprint in sprints %}
                         <option value="{{ sprint.id }}" {{ activeSprintId == sprint.id ? ' selected="selected"' : '' }}>{{ sprint.title }} ({{ sprint.status.title }})</option>
@@ -30,9 +30,6 @@
                 </select>
             {% endif %}
         </label>
-        <br>
-
-        <button type="submit">Submit</button>
     </form>
     {% for userStory in userStories %}
         <div>
