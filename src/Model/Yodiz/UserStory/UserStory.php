@@ -48,7 +48,7 @@ class UserStory
     private $tags;
 
     /**
-     * @var string
+     * @var \DateTimeImmutable
      */
     private $updatedOn;
 
@@ -61,7 +61,7 @@ class UserStory
      * @param array $owner
      * @param array $tasks
      * @param array $tags
-     * @param string $updatedOn
+     * @param \DateTimeImmutable $updatedOn
      */
     public function __construct(
         int $id,
@@ -72,7 +72,7 @@ class UserStory
         array $owner,
         array $tasks,
         array $tags,
-        string $updatedOn
+        \DateTimeImmutable $updatedOn
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -131,7 +131,7 @@ class UserStory
         return $this->tags;
     }
 
-    public function getUpdatedOn(): string
+    public function getUpdatedOn(): \DateTimeImmutable
     {
         return $this->updatedOn;
     }

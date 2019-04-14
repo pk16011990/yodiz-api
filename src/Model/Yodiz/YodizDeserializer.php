@@ -5,6 +5,7 @@ namespace App\Model\Yodiz;
 
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -44,8 +45,14 @@ class YodizDeserializer
     {
         if ($this->serializer === null) {
             $this->serializer = new Serializer(
-                [$this->objectNormalizer, new ArrayDenormalizer()],
-                [new JsonEncoder()]
+                [
+                    new DateTimeNormalizer([DateTimeNormalizer::FORMAT_KEY => 'Y-m-d\TH:i:s.vO']),
+                    new ArrayDenormalizer(),
+                    $this->objectNormalizer,
+                ],
+                [
+                    new JsonEncoder()
+                ]
             );
         }
 
