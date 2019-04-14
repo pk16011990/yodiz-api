@@ -1,0 +1,87 @@
+.board__col {
+    border-right: solid 1px #C9C9C9;
+}
+
+.board__col:last-child {
+    border-right: none;
+}
+
+.user-story {
+    border: 1px solid #C9C9C9;
+    background: #F5F5F5;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.user-story__header {
+    padding: 3px;
+}
+
+.user-story__number {
+    float: left;
+    border-right: 1px solid #C9C9C9;
+    border-bottom: 1px solid #C9C9C9;
+    position: relative;
+    top: -6px;
+    left: -6px;
+    padding: 3px;
+    margin: 3px;
+}
+
+.user-story__story-points {
+    float: right;
+    border-left: 1px solid #C9C9C9;
+    border-bottom: 1px solid #C9C9C9;
+    position: relative;
+    top: -6px;
+    left: 6px;
+    padding: 3px;
+    margin: 3px;;
+}
+
+.user-story__title {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.user-story__block {
+    border-top: 1px solid #C9C9C9;
+    padding: 3px;
+}
+
+.user-story__footer-item {
+    display: inline-block;
+    float: right;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.user-story__footer-item:last-child {
+    border-left: solid 1px #C9C9C9;
+    border-right: solid 1px #C9C9C9;
+}
+
+.user-story__footer-item:first-child {
+    float: left;
+}
+
+.user-story__tags-title {
+    font-weight: bold;
+}
+
+.user-story__tag {
+    border: solid 1px #B9B9B9;
+    border-radius: 3px;
+    background: #FAFAFA;
+    padding: 2px
+}
+
+.user-story__task {
+    border-bottom: 1px dotted #C9C9C9;
+    font-size: 0.9rem;
+}
+
+.user-story__task:last-child {
+    border-bottom: none;
+}
