@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Yodiz\UserStory;
 
 use App\Model\Yodiz\Status\Status;
+use App\Model\Yodiz\User\User;
 
 class UserStory
 {
@@ -33,7 +34,7 @@ class UserStory
     private $effortLogged;
 
     /**
-     * @var array
+     * @var \App\Model\Yodiz\User\User
      */
     private $owner;
 
@@ -58,7 +59,7 @@ class UserStory
      * @param \App\Model\Yodiz\Status\Status $status
      * @param string $storyPoints
      * @param float $effortLogged
-     * @param array $owner
+     * @param \App\Model\Yodiz\User\User $owner
      * @param array $tasks
      * @param array $tags
      * @param \DateTimeImmutable $updatedOn
@@ -69,7 +70,7 @@ class UserStory
         Status $status,
         string $storyPoints,
         float $effortLogged,
-        array $owner,
+        User $owner,
         array $tasks,
         array $tags,
         \DateTimeImmutable $updatedOn
