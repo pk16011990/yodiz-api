@@ -71,16 +71,17 @@
             </dl>
             <dl>
                 <dt>Effort logged:</dt>
-                <dd>{{ userStory.effortLogged }} h</dd>
+                <dd>{{ userStory.effortLogged|hoursAndMinutes }}</dd>
             </dl>
-            <dl>
-                <dt>Tags:</dt>
-                <dd>{% for tag in userStory.tags %}{{ tag.title }}{% if not loop.last %}, {% endif %}{% endfor %}</dd>
-            </dl>
-
+            {% if userStory.tags is not empty %}
+                <dl>
+                    <dt>Tags:</dt>
+                    <dd>{% for tag in userStory.tags %}{{ tag.title }}{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+                </dl>
+            {% endif %}
             <dl>
                 <dt>Last change:</dt>
-                <dd>{{ userStory.lastChangeOn|date }} h</dd>
+                <dd title="{{ userStory.lastChangeOn|date('Y-m-d H:i:s') }}">{{ userStory.lastChangeOn|ago }}</dd>
             </dl>
         </div>
     {% endfor %}
