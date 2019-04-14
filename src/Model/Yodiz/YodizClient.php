@@ -116,7 +116,9 @@ class YodizClient
 
     protected function getRequestCacheKey(string $method, string $uri, ?array $data): string
     {
-        return $uri . '_' . $method . '_' . sha1(\GuzzleHttp\json_encode($data));
+        return str_replace(['{', '}', '(', ')', '/', "\\", '@', ':'], '_', $uri)
+            . '__' . $method
+            . '__' . sha1($uri . '--' . \GuzzleHttp\json_encode($data));
     }
 
     private function authenticate(): void
