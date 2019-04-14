@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Model\Yodiz\Project\ProjectFacade;
 use App\Model\Yodiz\Sprint\SprintFacade;
+use App\Model\Yodiz\UserStory\UserStoryFacade;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +19,9 @@ class HomepageController extends AbstractController
     ): Response
     {
         $activeProjectId = $request->get('projectId');
-        $activeProjectId = $activeProjectId !== null ? (int)$activeProjectId : null;
+        $activeProjectId = ctype_digit($activeProjectId) ? (int)$activeProjectId : null;
         $activeSprintId = $request->get('sprintId');
-        $activeSprintId = $activeSprintId !== null ? (int)$activeSprintId : null;
+        $activeSprintId = ctype_digit($activeSprintId) ? (int)$activeSprintId : null;
         $projects = $projectFacade->getAllProjects();
 
         $sprints = null;

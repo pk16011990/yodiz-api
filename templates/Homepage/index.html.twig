@@ -7,7 +7,7 @@
         <label>
             Project:
             <select name="projectId">
-                <option>-- Select --</option>
+                <option value="">-- Select --</option>
                 {% for project in projects %}
                     <option value="{{ project.id }}" {{ activeProjectId == project.id ? ' selected="selected"' : '' }}>{{ project.title }}</option>
                 {% endfor %}
@@ -17,12 +17,18 @@
 
         <label>
             Sprint:
-            <select name="sprintId">
-                <option>-- Select --</option>
-                {% for sprint in sprints %}
-                    <option value="{{ sprint.id }}" {{ activeSprintId == sprint.id ? ' selected="selected"' : '' }}>{{ sprint.title }} ({{ sprint.status.title }})</option>
-                {% endfor %}
-            </select>
+            {% if sprints is null %}
+                <select disabled="disabled">
+                    <option value="">-- Select project before --</option>
+                </select>
+            {% else %}
+                <select name="sprintId">
+                    <option value="">-- Select --</option>
+                    {% for sprint in sprints %}
+                        <option value="{{ sprint.id }}" {{ activeSprintId == sprint.id ? ' selected="selected"' : '' }}>{{ sprint.title }} ({{ sprint.status.title }})</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
         </label>
         <br>
 
