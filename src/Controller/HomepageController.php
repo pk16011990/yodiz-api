@@ -15,7 +15,8 @@ class HomepageController extends AbstractController
     public function index(
         Request $request,
         ProjectFacade $projectFacade,
-        SprintFacade $sprintFacade
+        SprintFacade $sprintFacade,
+        UserStoryFacade $userStoryFacade
     ): Response
     {
         $activeProjectId = $request->get('projectId');
@@ -25,9 +26,16 @@ class HomepageController extends AbstractController
         $projects = $projectFacade->getAllProjects();
 
         $sprints = null;
+        $userStories = null;
         if ($activeProjectId !== null) {
             $sprints = $sprintFacade->getProjectSprints($activeProjectId);
+
+            if ($activeSprintId !== null) {
+                $userStories = $userStoryFacade->getSprintUserStories($activeProjectId, $activeSprintId);
+            }
         }
+
+        dump($userStories);
 
         return $this->render('Homepage/index.html.twig', [
             'activeProjectId' => $activeProjectId,

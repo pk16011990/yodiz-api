@@ -35,7 +35,7 @@ class YodizDeserializer
             $type,
             'json',
             [
-                'allow_extra_attributes' => false,
+                'allow_extra_attributes' => true,
             ]
         );
     }
