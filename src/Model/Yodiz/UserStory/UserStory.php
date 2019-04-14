@@ -44,7 +44,7 @@ class UserStory
     private $tasks;
 
     /**
-     * @var array
+     * @var \App\Model\Yodiz\Tag\Tag[]
      */
     private $tags;
 
@@ -61,7 +61,7 @@ class UserStory
      * @param float $effortLogged
      * @param \App\Model\Yodiz\User\User $owner
      * @param array $tasks
-     * @param array $tags
+     * @param \App\Model\Yodiz\Tag\Tag[] $tags
      * @param \DateTimeImmutable $updatedOn
      */
     public function __construct(
