@@ -34,5 +34,54 @@
 
         <button type="submit">Submit</button>
     </form>
-    Welcome on my page!
+    {% for userStory in userStories %}
+        <div>
+            <h3>
+                {# What is number 10273 in url? #}
+                <a href="https://app.yodiz.com/plan/pages/board.vz?cid=10273#/app/us-{{ userStory.id }}">US-{{ userStory.id }}</a>
+                {{ userStory.title }}
+            </h3>
+
+            <dl>
+                <dt>Owner:</dt>
+                <dd>{{ userStory.owner ? userStory.owner.fullName : 'nobody' }}</dd>
+            </dl>
+            <dl>
+                <dt>In progress:</dt>
+                <dd>
+                    {% for inProgressTask in userStory.inProgressTasks %}
+                        <div>
+                            {% if inProgressTask.owner is null %}
+                                Unassigned -
+                            {% else %}
+                                {{ inProgressTask.owner.fullName }} -
+                            {% endif %}
+                            {{ inProgressTask.title }}
+                        </div>
+                    {% endfor %}
+                </dd>
+            </dl>
+            <dl>
+                <dt>Status:</dt>
+                <dd>{{ userStory.status.title }}</dd>
+            </dl>
+            <dl>
+                <dt>Story points:</dt>
+                <dd>{{ userStory.storyPoints }} SP</dd>
+            </dl>
+            <dl>
+                <dt>Effort logged:</dt>
+                <dd>{{ userStory.effortLogged }} h</dd>
+            </dl>
+            <dl>
+                <dt>Tags:</dt>
+                <dd>{% for tag in userStory.tags %}{{ tag.title }}{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+            </dl>
+
+            <dl>
+                <dt>Last change:</dt>
+                <dd>{{ userStory.lastChangeOn|date }} h</dd>
+            </dl>
+        </div>
+    {% endfor %}
 {% endblock %}

@@ -139,4 +139,33 @@ class UserStory
         return $this->updatedOn;
     }
 
+    public function getLastChangeOn(): \DateTimeImmutable
+    {
+        $allDateTimes = [
+            $this->updatedOn,
+        ];
+
+        foreach ($this->tasks as $task) {
+            $allDateTimes[] = $task->getUpdatedOn();
+        }
+
+        return max($allDateTimes);
+    }
+
+    /**
+     * @return \App\Model\Yodiz\Task\Task[]
+     */
+    public function getInProgressTasks(): array
+    {
+        $inProgressTasks = [];
+
+        foreach ($this->tasks as $task) {
+            if ($task->isInProgress()) {
+                $inProgressTasks[] = $task;
+            }
+        }
+
+        return $inProgressTasks;
+    }
+
 }

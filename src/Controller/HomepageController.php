@@ -35,13 +35,12 @@ class HomepageController extends AbstractController
             }
         }
 
-        dump($userStories);
-
         return $this->render('Homepage/index.html.twig', [
             'activeProjectId' => $activeProjectId,
             'activeSprintId' => $activeSprintId,
             'projects' => $projects,
             'sprints' => $sprints,
+            'userStories' => $userStories,
         ]);
     }
 }
