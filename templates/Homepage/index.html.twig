@@ -38,15 +38,21 @@
         <div class="row board">
             <div class="col-md-12 col-lg-4 board__col">
                 <h2>Sprint backlog</h2>
-                {% for userStory in userStories %}
+                {% for userStory in userStories if userStory.status.new %}
                     {{ userStoryMacro.box(userStory) }}
                 {% endfor %}
             </div>
             <div class="col-md-12 col-lg-4 board__col">
                 <h2>In progress</h2>
+                {% for userStory in userStories if userStory.status.inProgress %}
+                    {{ userStoryMacro.box(userStory) }}
+                {% endfor %}
             </div>
             <div class="col-md-12 col-lg-4 board__col">
                 <h2>Done</h2>
+                {% for userStory in userStories if userStory.status.done %}
+                    {{ userStoryMacro.box(userStory) }}
+                {% endfor %}
             </div>
         </div>
     </div>

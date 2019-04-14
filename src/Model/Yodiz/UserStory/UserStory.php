@@ -158,7 +158,7 @@ class UserStory
         $inProgressTasks = [];
 
         foreach ($this->tasks as $task) {
-            if ($task->isInProgress()) {
+            if ($task->getStatus()->isInProgress()) {
                 $inProgressTasks[] = $task;
             }
         }

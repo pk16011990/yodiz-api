@@ -84,9 +84,4 @@ class Task
         return $this->updatedOn;
     }
 
-    public function isInProgress(): bool
-    {
-        return in_array(strtolower($this->status->getTitle()), ['done', 'new']) === false;
-    }
-
 }

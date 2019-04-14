@@ -34,4 +34,19 @@ class Status
         return $this->title;
     }
 
+    public function isNew(): bool
+    {
+        return in_array(strtolower($this->title), ['new', 'in evaluation'], true);
+    }
+
+    public function isDone(): bool
+    {
+        return in_array(strtolower($this->title), ['done', 'completed', 'accepted', 'rejected'], true);
+    }
+
+    public function isInProgress(): bool
+    {
+        return $this->isNew() === false && $this->isDone() === false;
+    }
+
 }

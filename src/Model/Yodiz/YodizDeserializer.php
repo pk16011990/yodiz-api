@@ -42,6 +42,7 @@ class YodizDeserializer
                 'default_constructor_arguments' => [
                     UserStory::class => [
                         'owner' => null,
+                        'tasks' => [],
                         'tags' => [],
                     ],
                     Task::class => [
